@@ -110,23 +110,23 @@ The database and the images are stored in the mapped volumes below:
   - Change the following variables accordingly:
       ```yaml
       DB_USERNAME: rdmuser
-      DB_PASSWORD: madwho?
+      DB_PASSWORD: pokemodrules
       DB_ROOT_USERNAME: root
-      DB_ROOT_PASSWORD: madwho?
+      DB_ROOT_PASSWORD: pokemodrules
       [...]
-      MYSQL_ROOT_PASSWORD: madwho?
+      MYSQL_ROOT_PASSWORD: pokemodrules
       MYSQL_DATABASE: rdmdb
       MYSQL_USER: rdmuser
-      MYSQL_PASSWORD: madwho?
+      MYSQL_PASSWORD: pokemodrules
       ```
   - **Delete** the following lines, _(if you keep them, your database will be accesible by everyone with the URL)._
       ```yaml
       PMA_USER: root
-      PMA_PASSWORD: madwho?
+      PMA_PASSWORD: pokemodrules
       ```
 - (RDM-Tools Only) Edit `tools/config/config.php` and change the lines below accordingly:
     ```php
     define('DB_USER', getenv("DB_USER") ?: "root");
-    define('DB_PSWD', getenv("DB_PSWD") ?: "madwho?");
+    define('DB_PSWD', getenv("DB_PSWD") ?: "pokemodrules");
     define('DB_NAME', getenv("DB_NAME") ?: "rdmdb");
     ```
