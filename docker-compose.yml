@@ -7,7 +7,7 @@ services:
       - atlas-network
     restart: unless-stopped
     tty: true
-    links:
+    depends_on:
       - db
     volumes:
       - ./images:/app/resources/webroot/static/img
@@ -75,6 +75,8 @@ services:
     container_name: atlas-pma
     networks:
       - atlas-network
+    depends_on:
+      - db
     restart: unless-stopped
     ports:
       - 9200:80
@@ -89,7 +91,7 @@ services:
       - atlas-network
     build: ./tools
     depends_on:
-      - db
+      - rdm
     volumes:
       - ./tools/config/config.php:/var/www/html/config/config.php
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
