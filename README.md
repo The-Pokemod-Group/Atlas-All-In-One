@@ -51,6 +51,8 @@ ___
 
 - [Open `localhost:9000`](http://localhost:9000) in your browser, and fill all the fields, using the token you got below as the Access Token.
 
+  > If the URL doesn't work, try [this](http://0.0.0.0:9000) and [this](http://127.0.0.1:9000) one too for good measure.
+
 - Make note of the local IP of the machine running RDM. You can use the shortcuts below:
     - Linux:
 
@@ -93,9 +95,12 @@ Every service is what's called a docker container. You can check the status of r
 
 ### Starting from scratch and dealing with docker failures
 
-If you have containers in a previous version or you ran this compose file previously, Docker
-you can cleanup everything with `docker-compose rm atlas-db atlas-pma atlas-rdm atlas-rdmtools` and then
-run the command above again.
+You can cleanup everything, **except the data**, by stopping and removing the containers like below:
+
+    $ docker-compose stop
+    $ docker-compose rm
+
+Starting the containers again with `docker-compose up -d` will still use `./data` directory and restore everything.
 
 ### Data Storage
 
