@@ -135,3 +135,8 @@ The database and the images are stored in the mapped volumes below:
     define('DB_PSWD', getenv("DB_PSWD") ?: "pokemodrules");
     define('DB_NAME', getenv("DB_NAME") ?: "rdmdb");
     ```
+- Browse to [your router's IP](https://wiki.amahi.org/index.php/Find_Your_Gateway_IP) and use the power of Google to find out how do you forward the ports using NAT for your router's brand:
+
+      MyRouterBrand MyRouterModel "Port Forwarding"|NAT
+
+  > You need to expose the ports 9000 and 9001 (and 9100 if you want RDM-tools to be accesible from outside)
