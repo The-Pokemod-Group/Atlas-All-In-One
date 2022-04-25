@@ -3,6 +3,8 @@ services:
   rdm:
     image: docker.pkg.github.com/realdevicemap/realdevicemap/realdevicemap:master
     container_name: atlas-rdm
+    networks:
+      - atlas-network
     restart: unless-stopped
     tty: true
     links:
@@ -55,6 +57,10 @@ services:
     image: mariadb:latest
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
     container_name: atlas-db
+    networks:
+      - atlas-network
+    ports:
+      - 3306:3306
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: pokemodrules
@@ -67,9 +73,9 @@ services:
   pma:
     image: phpmyadmin:latest
     container_name: atlas-pma
+    networks:
+      - atlas-network
     restart: unless-stopped
-    links:
-      - db
     ports:
       - 9200:80
     environment:
@@ -79,6 +85,8 @@ services:
       UPLOAD_LIMIT: 300M
   tools:
     container_name: atlas-rdmtools
+    networks:
+      - atlas-network
     build: ./tools
     depends_on:
       - db
@@ -91,6 +99,8 @@ services:
 volumes:
   backups:
     driver: local
+networks:
+  atlas-network:
 #   images:
 #     driver: local
 #   data:
