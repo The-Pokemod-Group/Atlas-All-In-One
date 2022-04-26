@@ -98,6 +98,22 @@ services:
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
+  reactmap:
+    image: ghcr.io/watwowmap/reactmap:main
+    container_name: atlas-reactmap
+    command: sh -c "yarn start"
+    restart: unless-stopped
+    networks:
+      - atlas-network
+    depends_on:
+      - rdm
+    volumes:
+      #- ./server/src/configs/areas.json:/home/node/server/src/configs/areas.json
+      - ./reactmap-local.json:/home/node/server/src/configs/local.json
+      #- ./server/src/configs/geofence.json/:/home/node/server/src/configs/geofence.json
+      - ./reactmap-env:/home/node/.env
+    ports:
+      - "9300:8080"
 volumes:
   backups:
     driver: local

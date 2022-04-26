@@ -64,6 +64,15 @@ ___
         - Type `ipconfig` and press Enter
         - Look for the line that says `IPv4`. The IP is right next to it.
 
+## Initial ReactMap Setup
+
+- ReactMap requires you to manually create a database first:
+    - Open the [PhpMyAdmin](http://localhost:9200) instance
+    - Click at **New** in the left sidebar, to create a new database
+    - Type `manual_db` in the field **Database name**
+    - Click the button **Create**
+- Wait a couple seconds and you should be able to access it at the [port 9300](http://localhost:9300).
+
 ## Entire Atlas Setup
 - Install the Atlas APK and Pokémon GO in your device.
 - Open Atlas and do the one-time initial setup:
@@ -86,6 +95,7 @@ ___
 - RDM Webhook: http://localhost:9001
 - RDM Tools:   http://localhost:9100
 - PHPMyAdmin:  http://localhost:9200
+- ReactMap:    http://localhost:9300
 
 ### Checking the current status of the services
 
