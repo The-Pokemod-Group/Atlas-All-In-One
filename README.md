@@ -93,6 +93,12 @@ Every service is what's called a docker container. You can check the status of r
 
     $ docker ps
 
+### RDM images and database
+
+- The directory `./data` contains the database. You can use this to make a backup of your data or delete it to start from scratch, for example.
+
+- RDM recently changed the way images are handled. Until this repository is updated, use [the official documentation](https://github.com/RealDeviceMap/RealDeviceMap/wiki/3.-Map-Images) for setting up images and check [RDM Discord](https://discord.gg/SQshbfrSzT) for more information.
+
 ### Starting from scratch and dealing with docker failures
 
 You can cleanup everything, **except the data**, by stopping and removing the containers like below:
@@ -101,12 +107,6 @@ You can cleanup everything, **except the data**, by stopping and removing the co
     $ docker-compose rm
 
 Starting the containers again with `docker-compose up -d` will still use `./data` directory and restore everything.
-
-### Data Storage
-
-The database and the images are stored in the mapped volumes below:
-
-- `./data` contains the database. You can use this to make a backup of your data and start fresh for example.
 
 ## Minimum Changes For Remote Access
 - Edit `docker-compose.yaml`:
