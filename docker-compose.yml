@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./images:/app/resources/webroot/static/img
+      # - ./images:/app/resources/webroot/static/img
       - backups:/app/backups
 #     - favicons:/app/resources/webroot/static/favicons
 #     - /etc/localtime:/etc/localtime:ro

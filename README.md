@@ -108,8 +108,6 @@ The database and the images are stored in the mapped volumes below:
 
 - `./data` contains the database. You can use this to make a backup of your data and start fresh for example.
 
-- (TODO) `./images` contains RDM's base images set for generation. Image generation is disabled because it takes forever, is a very naive approach, and ends up weighting over 20Gb, but you can enable it by uncommenting the following line from `docker-compose.yaml` etc etc
-
 ## Minimum Changes For Remote Access
 - Edit `docker-compose.yaml`:
   - Change the following variables accordingly:
