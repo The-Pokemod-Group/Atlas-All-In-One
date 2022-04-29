@@ -17,6 +17,7 @@ services:
     ports:
       - 9000:9000
       - 9001:9001
+      
     environment:
       DB_DATABASE: rdmdb
       DB_HOST: db
@@ -37,10 +38,6 @@ services:
       LOG_LEVEL: debug
       NO_BACKUP: 1
       NO_REQUIRE_ACCOUNT: 1
-      
-#Uncomment the 2 lines below if using as DB on your localhost outside of docker, then comment out or delete all of db and and depends_on:  -db lines
-#    extra_hosts:
-#    - "host.docker.internal:host-gateway"
 
 ### Uncommenting the following lines will set these values to TRUE (regardless of their value)
 #     USE_RW_FOR_QUEST: 1
@@ -58,6 +55,11 @@ services:
 #   security_opt:
 #     - seccomp=unconfined
 #     - apparmor=unconfined
+
+#Uncomment the 2 lines below if using as DB on your localhost outside of docker, then comment out or delete all of db and and depends_on:  -db lines
+#    extra_hosts:
+#    - "host.docker.internal:host-gateway"
+
   db:
     image: mariadb:latest
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
