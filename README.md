@@ -108,6 +108,46 @@ You can cleanup everything, **except the data**, by stopping and removing the co
 
 Starting the containers again with `docker-compose up -d` will still use `./data` directory and restore everything.
 
+## Changes for using a DB on your Localhost outside of Docker
+
+Edit `docker-compose.yaml`:
+ - Change the following:
+Uncomment this
+```
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+```
+
+Comment out/delete this in both rdm and pma
+```
+    depends_on:
+      - db
+```
+
+
+Your `db_host` needs to be `host.docker.internal` not `localhost`
+
+The DB user you are using needs to have host permissions for either `%` or your docker bridge IP
+
+You can find your docker bridge IP by using
+
+```
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+```
+
+if you don't know your container name or id you can view all current containers with `docker ps`
+
+To create a user with % permissions run the following query on your DB
+
+```
+CREATE USER 'USER'@'%' IDENTIFIED BY 'PASSWORD';
+GRANT ALL PRIVILEGES ON DB.* TO 'USER'@'%';
+FLUSH PRIVILEGES;
+```
+
+Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if you are only connecting from Docker to the DB and nothing else(including localhost!) or  `bind-address = 0.0.0.0` to enable access from any IP (This could open you up to access from any IP on the web so make sure your firewall is correctly configured)
+
+
 ## Minimum Changes For Remote Access
 - Edit `docker-compose.yaml`:
   - Change the following variables accordingly:
