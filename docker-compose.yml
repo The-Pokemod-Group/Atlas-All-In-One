@@ -55,7 +55,7 @@ services:
 #     - apparmor=unconfined
   atlas-db:
     image: mariadb:latest
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400 --init-file /data/application/init.sql
     container_name: atlas-db
     networks:
       - atlas-network
@@ -70,6 +70,7 @@ services:
     volumes:
       - ./data:/var/lib/mysql
 #     - /etc/localtime:/etc/localtime:ro
+      - ./reactmap/init.sql:/data/application/init.sql
   atlas-pma:
     image: phpmyadmin:latest
     container_name: atlas-pma

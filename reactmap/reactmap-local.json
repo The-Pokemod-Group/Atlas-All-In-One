@@ -67,7 +67,7 @@
   "database": {
     "schemas": [
       {
-        "host": "db",
+        "host": "atlas-db",
         "port": 3306,
         "username": "root",
         "password": "pokemodrules",
@@ -83,7 +83,7 @@
         ]
       },
       {
-        "host": "db",
+        "host": "atlas-db",
         "port": 3306,
         "username": "root",
         "password": "pokemodrules",
