@@ -125,7 +125,7 @@ Comment out/delete this in both rdm and pma
 ```
 
 
-Your `db_host` needs to be `host.docker.internal` not `localhost`
+Your `db_host` needs to be `host.docker.internal` not `localhost` anywhere else you need to enter your DB host in docker always use `host.docker.internal`
 
 The DB user you are using needs to have host permissions for either `%` or your docker bridge IP
 
@@ -135,7 +135,7 @@ You can find your docker bridge IP by using
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
 ```
 
-if you don't know your container name or id you can view all current containers with `docker ps`
+If you don't know your container name or id you can view all current containers with `docker ps`
 
 To create a user with % permissions run the following query on your DB
 
