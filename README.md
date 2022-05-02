@@ -39,6 +39,35 @@ ___
 
 - If no errors appear, the containers should be running. Open your browser and [check `localhost:9000`](http://localhost:9000) to confirm.
 
+## Getting started (Windows)
+
+- Install [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
+
+- Login to GitHub registry with your GitHub credentials (unfortunately RDM requires a GitHub account, you can [create one here](https://github.com/join)):
+    - Open up a PowerShell Terminal 
+        - Press Super+R (Super is the "Windows" key)
+        - Type powershell and press OK
+        - Log into your GitHub account with the docker command below (Replace USERNAME and PASSWORD with your own)
+            <!-- echo $CR_PAT | docker login docker.pkg.github.com -u USERNAME --password-stdin
+            # if that doesn't work, you can use: -->
+            ```bash
+            docker login docker.pkg.github.com -u USERNAME --password PASSWORD
+            ```
+- Run `docker-compose up -d db` in your PowerShell from the Atlas-All-In-One folder (Shift+Right click on empty space of the file explorer)
+- After it is done pulling run `docker-compose logs -f` in your Powershell terminal.
+- Once you see these two lines on the logs 
+
+    `atlas-db  | 2022-04-30  6:46:02 0 [Note] mariadbd: ready for connections.`
+    
+    `atlas-db  | Version: '10.7.3-MariaDB-1:10.7.3+maria~focal'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution`
+    
+    Press CTRL+C to close the logs.
+- Now you may run `docker-compose up -d` to pull the rest of the files and startup RDM.
+- You need to open up the port 9001 so devices can access it to connect to your Windows Computer.
+    You can do that by opening an elevated command prompt or an elevated Powershell terminal and executing this command
+    
+    ```netsh advfirewall firewall add rule name="TCP Port 9001" dir=in action=allow protocol=TCP localport=9001```
+    
 ## Basic RDM Setup
 
 - To get the first time RDM's Access Token you need to look for it in the logs. Go back to your terminal and run:
