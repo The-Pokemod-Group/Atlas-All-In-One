@@ -124,6 +124,28 @@ Comment out/delete this in both rdm and pma
       - db
 ```
 
+Also make sure to comment out or delete all of the below otherwise you will end up creating a database anyway
+
+```
+ db:
+    image: mariadb:latest
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
+    container_name: atlas-db
+    networks:
+      - atlas-network
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: pokemodrules
+      MYSQL_DATABASE: rdmdb
+      MYSQL_USER: rdmuser
+      MYSQL_PASSWORD: pokemodrules
+    volumes:
+      - ./data:/var/lib/mysql
+#     - /etc/localtime:/etc/localtime:ro
+```
+
 
 Your `db_host` needs to be `host.docker.internal` not `localhost` anywhere else you need to enter your DB host in docker always use `host.docker.internal`
 
