@@ -126,7 +126,10 @@ Every service is what's called a docker container. You can check the status of r
 
 - The directory `./data` contains the database. You can use this to make a backup of your data or delete it to start from scratch, for example.
 
-- RDM recently changed the way images are handled. Until this repository is updated, use [the official documentation](https://github.com/RealDeviceMap/RealDeviceMap/wiki/3.-Map-Images) for setting up images and check [RDM Discord](https://discord.gg/SQshbfrSzT) for more information.
+- To get images working in RDM, uncomment the images volume in your docker-compose.yml file.
+    - Download any [UICONS repository](https://github.com/nileplumb/PkmnHomeIcons) and put it into a folder called images in your Atlas All In One folder
+    - Go into the RDM settings and in the box `Icon Styles (one per line, Name;Folder)` type in whatever you want your icons named followed by the folder it's on ie. `UICONS;default/PkmnHomeIcons/UICONS/` "default" has to be there since we have it in the volume path of the docker-compose.yml file. PkmnHomeIcons is the root folder of the repo and UICONS would be the folder where the index.json is at.
+    - After this simply restart RDM with `docker restart atlas-rdm` and your images should start rendering into RDM. Be aware that this takes more storage because of the way RDM handles images is a bit odd.
 
 ### Starting from scratch and dealing with docker failures
 
