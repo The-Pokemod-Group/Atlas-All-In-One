@@ -128,8 +128,8 @@ Every service is what's called a docker container. You can check the status of r
 
 - To get images working in RDM, uncomment the images volume in your docker-compose.yml file.
     - Download any [UICONS repository](https://github.com/nileplumb/PkmnHomeIcons) and put it into a folder called images in your Atlas All In One folder
-    - Go into the RDM settings and in the box `Icon Styles (one per line, Name;Folder)` type in whatever you want your icons named followed by the folder it's on ie. `UICONS;default/PkmnHomeIcons/UICONS/` "default" has to be there since we have it in the volume path of the docker-compose.yml file. PkmnHomeIcons is the root folder of the repo and UICONS would be the folder where the index.json is at.
-    - After this simply restart RDM with `docker restart atlas-rdm` and your images should start rendering into RDM. Be aware that this takes more storage because of the way RDM handles images is a bit odd.
+    - Go into the RDM settings and in the box `Icon Styles (one per line, Name;Folder)` type in whatever you want your icons named followed by the folder it's on ie. `UICONS;PkmnHomeIcons/UICONS` PkmnHomeIcons is the root folder of the repo and UICONS would be the folder where the index.json is at.
+    - After this `docker-compose down && docker-compose up -d` and your images should start rendering into RDM. Be aware that this takes more storage because of the way RDM handles images is a bit odd.
 
 ### Starting from scratch and dealing with docker failures
 
