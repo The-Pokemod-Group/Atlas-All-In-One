@@ -97,7 +97,7 @@ ___
 - Install the Atlas APK and Pokémon GO in your device.
 - Open Atlas and do the one-time initial setup:
     - RDM URL: `http://IP-YOU-GOT-ABOVE:9001` _(note this is 9001, not 9000)._
-    - Auth Bearer: leave empty.
+    - Auth Bearer: Fill in with the same string as Device Endpoint Secret in RDM's settings
     - Device Name: anything you want.
     - Email: the e-mail you used to register at [atlas.pokemod.dev](https://atlas.pokemod.dev)
     - Device auth token: this is the token you initially got after your first login on [atlas.pokemod.dev](https://atlas.pokemod.dev).
