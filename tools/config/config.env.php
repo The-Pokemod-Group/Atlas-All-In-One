@@ -3,7 +3,7 @@
 // RDM DB
 define('DB_HOST', getenv("DB_HOST") ?: "db");
 define('DB_USER', getenv("DB_USER") ?: "root");
-define('DB_PSWD', getenv("DB_PSWD") ?: "pokemodrules");
+define('DB_PSWD', getenv("DB_PSWD") ?: "S0mePassw0rd");
 define('DB_NAME', getenv("DB_NAME") ?: "rdmdb");
 define('DB_PORT', getenv("DB_PORT") ?: 3306);
 

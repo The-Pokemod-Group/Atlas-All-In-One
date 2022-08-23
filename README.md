@@ -35,6 +35,10 @@ ___
 
 - Open a shell (terminal) at the directory you extracted the zip.
 
+- For PoracleJS: 
+   - Please fill configuration data in foolder poraclejs-config/local.json.
+   - (Optional) Change the default passwords for PoracleJS db/user in init/01.sql and docker-compose.yml
+
 - Run `docker-compose up -d`. This will download the images and perform the first time initialization setup for each one of the services.
 
 - If no errors appear, the containers should be running. Open your browser and [check `localhost:9000`](http://localhost:9000) to confirm.

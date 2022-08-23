@@ -1,0 +1,156 @@
+{
+    "server": {
+        "host": "PORACLE_SERVER_HOST",
+        "port": {
+            "__name": "PORACLE_SERVER_PORT",
+            "__format": "json"
+          },
+        "ipWhitelist": {
+            "__name": "PORACLE_IP_WHITELIST",
+            "__format": "json"
+          },
+        "ipBlacklist": {
+            "__name": "PORACLE_IP_BLACKLIST",
+            "__format": "json"
+          }
+    },
+
+	"general": {
+        "environment": "ENVIRONMENT_CONFIGURATION",
+        "alertMinimumTime": "MINIMUM_ALERT_TIME",
+        "imgUrl": "IMAGE_URL",
+        "locale": "PORACLE_LANGUAGE",
+        "weatherChangeAlert": "WEATHER_ALERTS"
+    },
+
+    "logger": {
+        "level": "SERVICE_LOGGER_LEVEL",
+        "logSize": {
+            "__name": "SERVICE_LOGGER_SIZE",
+            "__format": "json"
+          }
+    },
+
+    "database": {
+      "client": "PORACLE_DB_TYPE",
+      "conn": {
+        "host": "PORACLE_DB_HOST",
+        "database": "PORACLE_DB_DATABASE",
+        "user": "PORACLE_DB_USER",
+        "password": "PORACLE_DB_PASSWORD",
+        "port": {
+          "__name": "PORACLE_DB_PORT",
+          "__format": "json"
+        }
+      }
+    },
+
+    "locale": {
+      "timeformat": "TIME_FORMAT",
+      "time": "TIME_STRING",
+      "addressFormat": "ADDRESS_FORMAT",
+      "language": "PORACLE_LANGUAGE"
+    },
+
+    "discord": {
+      "enabled": {
+        "__name": "DISCORD_ENABLED",
+        "__format": "json"
+      },
+      "unknownResponse": {
+        "__name": "DISCORD_UNKNOWN_RESPONSE",
+        "__format": "json"
+      },
+      "invite": "DISCORD_INVITE",
+      "token": {
+        "__name": "DISCORD_TOKEN",
+        "__format": "json"
+      },
+      "channels": {
+        "__name": "REGISTER_CHANNELS",
+        "__format": "json"
+      },
+      "userRole": {
+        "__name": "REGISTER_ROLES",
+        "__format": "json"
+      },
+      "admins": {
+        "__name": "ADMINS",
+        "__format": "json"
+      },
+      "prefix": "PREFIX",
+      "limitSec": {
+        "__name": "LIMIT_SEC",
+        "__format": "json"
+      },
+      "limitAmount": {
+        "__name": "LIMIT_MESSAGES",
+        "__format": "json"
+      },
+      "iv_colors": {
+        "__name": "IV_COLORS",
+        "__format": "json"
+      }
+    },
+
+    "telegram": {
+      "enabled": {
+        "__name": "TELEGRAM_ENABLED",
+        "__format": "json"
+      },
+      "location": {
+        "__name": "TELEGRAM_LOCATION",
+        "__format": "json"
+      },
+      "token": "TELEGRAM_TOLEN",
+      "admins": {
+        "__name": "TELEGRAM_ADMINS",
+        "__format": "json"
+      },
+      "group": {
+        "__name": "TELEGRAM_REGISTER_GROUPS",
+        "__format": "json"
+      }
+    },
+
+    "geocoding": {
+      "provider": "GEOCODING_PROVIDER",
+      "providerURL": "GEOCODING_PROVIDER_URL",
+      "staticProvider": "STATIC_PROVIDER",
+      "staticProviderURL": "STATIC_PROVIDER_URL",
+      "geocodingKey":{
+        "__name": "GEOCODING_KEYS",
+        "__format": "json"
+      },
+      "staticKey":{
+        "__name": "STATIC_MAPS_KEYS",
+        "__format": "json"
+      },
+      "width": {
+        "__name": "STATIC_MAP_WIDTH",
+        "__format": "json"
+      },
+      "height": {
+        "__name": "STATIC_MAP_HEIGHT",
+        "__format": "json"
+      },
+      "zoom": {
+        "__name": "STATIC_MAP_ZOOM",
+        "__format": "json"
+      },
+      "spriteHeight": {
+        "__name": "STATIC_MAP_SPRITE_HEIGTH",
+        "__format": "json"
+      },
+      "spriteWidth": {
+        "__name": "STATIC_MAP_SPRITE_WIDTH",
+        "__format": "json"
+      },
+      "scale": {
+        "__name": "STATIC_MAP_SPRITE_SCALE",
+        "__format": "json"
+      },
+      "type": "STATIC_MAP_STYLE"
+    }
+
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "type": "pokemon",
+    "test": "boring",
+    "location": "current",
+    "webhook": {"encounter_id":"2860050238438880188","pokemon_id":339,"display_pokemon_id":null,"spawnpoint_id":4938889143561,"latitude":51.28667669763628,"longitude":1.068291695520621,"disappear_time":1641971693,"verified":true,"seen_type":"encounter","cp_multiplier":0.667934,"pokemon_level":25,"costume":0,"cp":512,"individual_attack":5,"individual_defense":12,"individual_stamina":9,"move_1":216,"move_2":39,"height":0.420763,"weight":2.03655,"gender":2,"rarity":1,"base_catch":0.37428844,"great_catch":0.50505006,"ultra_catch":0.60848504,"weather":1}
+  },
+  {
+    "type": "pokemon",
+    "test": "hundo",
+    "location": "current",
+    "webhook": {"encounter_id":"4741200842694954430","pokemon_id":129,"display_pokemon_id":null,"spawnpoint_id":4938887221731,"latitude":51.24585725757358,"longitude":1.1194668505277585,"disappear_time":1646410991,"verified":true,"seen_type":"encounter","cp_multiplier":0.694144,"pokemon_level":27,"form":253,"costume":0,"cp":212,"individual_attack":15,"individual_defense":15,"individual_stamina":15,"move_1":231,"move_2":133,"height":0.870209,"weight":7.80769,"gender":1,"rarity":1,"base_catch":0.5042184,"great_catch":0.65091145,"ultra_catch":0.7542006}
+  },
+  {
+    "type": "pokemon",
+    "test": "great1",
+    "location": "current",
+    "webhook": {"pokestop_id":"None","longitude":0.8820540265317288,"pokemon_id":2,"disappear_time":1642362331,"last_modified_time":1642361138,"pvp_rankings_ultra_league":[{"level":50,"percentage":0.8981240757366443,"rank":836,"pokemon":2,"form":166,"cp":1731},{"pokemon":3,"cp":2492,"level":39.5,"rank":26,"form":169,"percentage":0.9923566519009468}],"first_seen":1642361134,"gender":1,"move_1":214,"individual_defense":13,"cp":114,"weather":0,"latitude":51.31614219989664,"spawnpoint_id":"ED31A733","costume":0,"capture_2":0.32665425539016724,"pokemon_level":3,"height":1.080157995223999,"move_2":116,"individual_stamina":14,"weight":15.371509552001953,"is_event":false,"username":"PogoDroid","individual_attack":0,"display_pokemon_id":null,"capture_1":0.23176854848861694,"pvp_rankings_great_league":[{"level":38.5,"percentage":1,"pokemon":2,"form":166,"rank":1,"cp":1498},{"pokemon":3,"form":169,"level":20.5,"rank":267,"percentage":0.971374455778384,"cp":1470}],"encounter_id":"2744965908571838891","form":166,"disappear_time_verified":true,"capture_3":0.40982043743133545,"shiny":false}
+  },
+  {
+    "type": "pokemon",
+    "test": "hisuian",
+    "location": "current",
+    "webhook": {"encounter_id":"9338459503482903326","pokemon_id":100,"display_pokemon_id":null,"spawnpoint_id":4938896667841,"latitude":51.321657891935466,"longitude":0.8998418403740487,"disappear_time":1643562415,"verified":true,"seen_type":"encounter","cp_multiplier":0.719399,"pokemon_level":29,"form":2728,"costume":0,"cp":715,"individual_attack":2,"individual_defense":11,"individual_stamina":7,"move_1":221,"move_2":125,"height":0.558708,"weight":16.899,"gender":3,"rarity":1,"base_catch":0.34751225,"great_catch":0.47294182,"ultra_catch":0.57425976}
+  },
+  {
+    "type": "pokemon",
+    "test": "eevee",
+    "location": "current",
+    "webhook": {"encounter_id":"2857982865584927291","pokemon_id":133,"display_pokemon_id":null,"spawnpoint_id":4938887527525,"latitude":51.26747517194389,"longitude":1.09152267924935,"disappear_time":1643525390,"verified":true,"seen_type":"encounter","cp_multiplier":0.566755,"pokemon_level":18,"costume":0,"cp":479,"individual_attack":0,"individual_defense":15,"individual_stamina":14,"move_1":221,"move_2":125,"height":0.230075,"weight":2.88183,"gender":1,"rarity":2,"base_catch":0.35288644,"great_catch":0.47944003,"ultra_catch":0.58124405}
+  },
+  {
+    "type": "pokemon",
+    "test": "ditto",
+    "location": "current",
+    "webhook": {"encounter_id":"13333362535033687449","pokemon_id":132,"display_pokemon_id":23,"spawnpoint_id":4938896882219,"latitude":51.31545794556648,"longitude":0.8859245881167105,"disappear_time":1652015912,"verified":true,"seen_type":"encounter","cp_multiplier":0.737769,"pokemon_level":31,"display_form":697,"costume":0,"cp":730,"individual_attack":9,"individual_defense":8,"individual_stamina":10,"move_1":242,"move_2":133,"height":2.61885,"weight":11.4725,"gender":3,"display_gender":1,"rarity":5,"base_catch":0.3388592,"great_catch":0.46242267,"ultra_catch":0.56289285}
+  },
+  {
+    "type": "pokemon",
+    "test": "ultra1",
+    "location": "current",
+    "webhook": {"disappear_time_verified":true,"latitude":51.318447131147686,"capture_1":0.5401920080184937,"is_event":false,"individual_attack":15,"move_2":79,"pvp_rankings_great_league":[{"pokemon":100,"cp":1137,"rank":4,"form":0,"level":50,"percentage":0.9911505773542376},{"rank":1094,"form":0,"pokemon":101,"cp":1495,"percentage":0.9495395431562693,"level":25}],"gender":3,"shiny":false,"weight":13.658241271972656,"individual_stamina":14,"longitude":0.8804586148837922,"costume":0,"height":0.584269642829895,"individual_defense":15,"move_1":206,"capture_3":0.788576602935791,"spawnpoint_id":"ED31746B","cp":345,"disappear_time":1642365619,"form":0,"encounter_id":"5597246571950245234","pvp_rankings_ultra_league":[{"form":0,"rank":4,"cp":1137,"percentage":0.9911505773542376,"level":50,"pokemon":100},{"rank":1,"pokemon":101,"level":50,"form":0,"cp":2366,"percentage":1}],"username":"PogoDroid","pokemon_id":100,"last_modified_time":1642363854,"capture_2":0.6882081031799316,"first_seen":1642363850,"pokemon_level":12,"display_pokemon_id":null,"weather":0,"pokestop_id":"None"}
+  },
+  {
+    "type": "raid",
+    "test": "egg1",
+    "location": "current",
+    "webhook": {"latitude":51.214498,"longitude":1.136982,"level":1,"pokemon_id":0,"team_id":2,"cp":0,"start":1641972583,"end":1641975283,"name":"The Labyrinth at The Quiet View","evolution":0,"spawn":1641968983,"move_1":1,"move_2":2,"gym_id":"21aa4dc581714d80b85d4cea7f9049de.16","url":"http://lh3.googleusercontent.com/x8Zuut6uKvyJCD1ZlmX3XeO2QoqefpNUq_iHtJEgU9NQZT3i1ZjqoUiwPiVYnZ8NzNEyddEWZKHofPl7FB8jk1CJQzcqULYYvwGbrJFo","is_ex_raid_eligible":false,"is_exclusive":false}
+  },
+  {
+    "type": "raid",
+    "test": "level5",
+    "location": "current",
+    "webhook":{"latitude":51.278005,"longitude":1.093851,"level":5,"pokemon_id":485,"team_id":3,"cp":49192,"start":1641969560,"end":1641972260,"name":"St Martin's Church","evolution":0,"spawn":1641965960,"move_1":269,"move_2":32,"gym_id":"3ccf1513aff04c7e91e6831e237fe39a.11","url":"http://lh3.googleusercontent.com/ZpnODSKPiiHxRYVOI9mCJcKiw2LH3HMfk8gGWXVqJB3NAPgyqIr76NF0zsdrszrchECNqGgZ2E5W0KURNyTmP-lfkqE","form":0,"is_ex_raid_eligible":false,"is_exclusive":false,"gender":2,"costume":0}
+  },
+  {
+    "type": "raid",
+    "test": "egg7",
+    "location": "current",
+    "webhook": {"costume":0,"gym_name":"Statue of holy Nepomuks","team_id":2,"evolution":0,"spawn":1652098036,"latitude":51.137727,"form":0,"longitude":1.241341,"move_2":0,"gym_url":"http://lh3.googleusercontent.com/GvIvNQamR84wF3soNRaoAYSPdV0OU4yuj8WcIACcq9We1bfDx2gms9T2tTB6yHn7ZVLF_h5TICgKbwN8uVF07D1R0A","gym_id":"2c43cb1aa8f14bb18610e235d4c81b30.16","gender":0,"pokemon_id":0,"power_up_level":0,"sponsor_id":0,"is_exclusive":false,"ar_scan_eligible":true,"cp":0,"ex_raid_eligible":false,"power_up_points":20,"power_up_end_timestamp":0,"partner_id":0,"end":1652104336,"start":1652101636,"move_1":0,"level":7}
+  },
+  {
+    "type": "raid",
+    "test": "level7",
+    "location": "current",
+    "webhook":{"latitude":51.137727,"longitude":1.241341,"level":7,"pokemon_id":381,"team_id":2,"cp":84000,"start":1652101636,"end":1652104336,"name":"Statue of holy Nepomuks","evolution":1,"spawn":1652098036,"move_1":204,"move_2":83,"gym_id":"2c43cb1aa8f14bb18610e235d4c81b30.16","url":"http://lh3.googleusercontent.com/GvIvNQamR84wF3soNRaoAYSPdV0OU4yuj8WcIACcq9We1bfDx2gms9T2tTB6yHn7ZVLF_h5TICgKbwN8uVF07D1R0A","form":0,"is_ex_raid_eligible":false,"is_exclusive":false,"gender":2,"costume":0,"ar_scan_eligible":true}
+  },
+  {
+    "type": "raid",
+    "test": "egg8",
+    "location": "current",
+    "webhook": {"costume":0,"gym_name":"Kölner Dom","team_id":1,"evolution":0,"spawn":1652098036,"latitude":50.94129,"form":0,"longitude":6.95697,"move_2":0,"gym_url":"http://lh3.googleusercontent.com/SckUbuYToQrnlv5dHpMmO4sP0tBGUqy1y8ghQPsujOqfWMYXkY6K-6g74VrRpwhumCx1ulQUUBIpUC0TiEh5t5I4rg","gym_id":"fc310ff2922e47c09c266914639f6aba.12","gender":0,"pokemon_id":0,"power_up_level":0,"sponsor_id":0,"is_exclusive":false,"ar_scan_eligible":true,"cp":0,"ex_raid_eligible":false,"power_up_points":20,"power_up_end_timestamp":0,"partner_id":0,"end":1652104336,"start":1652101636,"move_1":0,"level":8}
+  },
+  {
+    "type": "raid",
+    "test": "level8",
+    "location": "current",
+    "webhook":{"latitude":50.94129,"longitude":6.95697,"level":8,"pokemon_id":793,"team_id":3,"cp":48499,"start":1641969560,"end":1641972260,"name":"Kölner Dom","evolution":0,"spawn":1652098045,"move_1":225,"move_2":64,"gym_id":"fc310ff2922e47c09c266914639f6aba.12","url":"http://lh3.googleusercontent.com/SckUbuYToQrnlv5dHpMmO4sP0tBGUqy1y8ghQPsujOqfWMYXkY6K-6g74VrRpwhumCx1ulQUUBIpUC0TiEh5t5I4rg","form":0,"is_ex_raid_eligible":false,"is_exclusive":false,"gender":1,"costume":0}
+  },
+  {
+    "type": "quest",
+    "test": "stardust",
+    "webhook": {"pokestop_id":"7d2bd3f5e4564b74a4426fb5521cf758.11","template":"CHALLENGE_BASE_SPIN_S_ITEM","pokestop_name":"Canterbury Bus Station","pokestop_url":"http://lh3.googleusercontent.com/hCU2iQ2B2UrFAeUxNlg0IMA5X0cy1ntn-ly_IKwCjDeDP-MZeS2TWZU695UM7f0vG7MhqREQ8QitO1csxfgy17RpGU4","conditions":[],"type":5,"latitude":51.276593,"longitude":1.082505,"rewards":[{"info":{"amount":500},"type":3}],"target":3,"updated":1643522373,"quest_task":"Spin 3 PokéStops or Gyms","with_ar":true}
+  },
+  {
+    "type": "quest",
+    "test": "pokemon",
+    "webhook": {"pokestop_id":"45ad8b858e31453fa5a8da2fa124c11a.16","template":"JAN_2022_BUDDY_HEARTS","pokestop_name":"Whitefriars Water Clock","pokestop_url":"http://lh3.googleusercontent.com/YiixrmDfSjYoH_OAfdN3UCmPfDpYLPWowz_zTk-eDELJBCWhGwrscjLHpfV_yt53z7zo_7NtKqkGSHnTWrkK3tjCEdA","conditions":[],"type":34,"latitude":51.277028,"longitude":1.081485,"rewards":[{"info":{"pokemon_id":133,"form_id":0,"costume_id":0,"shiny":0},"type":7}],"target":5,"updated":1643522366,"quest_task":"Earn 5 hearts with your Buddy","with_ar":true}
+  },
+  {
+    "type": "quest",
+    "test": "item",
+    "webhook": {"pokestop_id":"696a5d061f824c01b01b853af6a1ad95.16","template":"QUEST_TGR_JAN22_CATCH","pokestop_name":"Eye On The Wall","pokestop_url":"http://lh3.googleusercontent.com/WWDrs4ADaghmU-OFAKAY8lbgJIq5LiDDtPMRSh6_QTIbIWIg69UD1LoLEnH7LYcTyaNEBP38yTVJnE73C6bGS2_8gzhN","conditions":[],"type":4,"latitude":51.276413,"longitude":1.082237,"rewards":[{"info":{"item_id":103,"amount":2},"type":2}],"target":5,"updated":1643522344,"quest_task":"Catch 5 Pokémon","with_ar":true}
+  },
+  {
+    "type": "pokestop",
+    "test": "invasion",
+    "webhook": {"name":"Site Of Doges Chantry","pokestop_id":"e3c2628308cf468fb802ff72b326232c.16","latitude":51.276225,"longitude":1.087866,"updated":1643529456,"last_modified":1643529455,"url":"http://lh3.googleusercontent.com/esDyMLRH7TGp6lgw2VLNk8tBRzx5nJ3_9JRiPgZA1spY_FKMpDI-1lBwfrN4enCy8JF4QTlVRwIlpQMqxIq9Z63n_Q","incident_start":1643529452,"incident_expiration":1643531252,"incident_grunt_type":49}
+  },
+  {
+    "type": "pokestop",
+    "test": "giovanni",
+    "webhook": {"name":"Patisserie Valerie","pokestop_id":"4a5d8d346e584faaa41bc1a8abe8055a.16","latitude":51.279894,"longitude":1.078755,"updated":1643529456,"last_modified":1643508636,"url":"http://lh3.googleusercontent.com/SEhpe0J4i_odlJxtpph2REtdoMTKYxWPhhZryDJdFBCuPUdBY0uw0yeYKK9Obbk79ziVdJkYzBA1hjqbQ7kqeO4W3eFt","incident_start":1643522400,"incident_expiration":1643580000,"incident_grunt_type":44}
+  },
+  {
+    "type": "pokestop",
+    "test": "lure",
+    "webhook": {"name":"Memorial Sculpture & Verse","pokestop_id":"0d4b26adbf24446ba893f0aa3f8de337.16","latitude":51.284727,"longitude":1.060694,"updated":1643554276,"last_modified":1643553312,"lure_expiration":1643555112,"lure_id":502,"url":"http://lh3.googleusercontent.com/Ce-yPhm1FwGNbFzaM0ToMESZ57EWx1g8dKXXgEE4o-mmdP0XdsHk2nSEXOBk88H5PIXBHud-b7m6PUUJ3N8Pe_XB98NY"}
+  }
+]
