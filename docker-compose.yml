@@ -132,9 +132,9 @@ services:
       PORACLE_DB_USER: poracle_user
       PORACLE_DB_PASSWORD: poracle_password
     volumes:
-      - ./poracle-config/:/usr/src/app/config/
-      - ./poracle-logs/:/usr/src/app/logs/
-      - ./.poracle-cache/:/usr/src/app/.cache/
+      - ./poraclejs-config/:/usr/src/app/config/
+      - ./poraclejs-logs/:/usr/src/app/logs/
+      - ./.poraclejs-cache/:/usr/src/app/.cache/
 volumes:
   backups:
     driver: local
