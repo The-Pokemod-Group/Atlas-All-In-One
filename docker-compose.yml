@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-  rdm:
+  atlas-rdm:
     image: docker.pkg.github.com/realdevicemap/realdevicemap/realdevicemap:master
     container_name: atlas-rdm
     networks:
@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     tty: true
     depends_on:
-      - db
+      - atlas-db
     volumes:
       # - ./images:/app/resources/webroot/static/img
       - backups:/app/backups
@@ -17,10 +17,10 @@ services:
     ports:
       - 9000:9000
       - 9001:9001
-      
+
     environment:
       DB_DATABASE: rdmdb
-      DB_HOST: db
+      DB_HOST: atlas-db
       DB_PORT: 3306
       DB_USERNAME: rdmuser
       DB_PASSWORD: pokemodrules
@@ -62,7 +62,7 @@ services:
 
   db:
     image: mariadb:latest
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400 --init-file /data/application/init.sql
     container_name: atlas-db
     networks:
       - atlas-network
@@ -77,34 +77,51 @@ services:
     volumes:
       - ./data:/var/lib/mysql
 #     - /etc/localtime:/etc/localtime:ro
-  pma:
+      - ./reactmap/init.sql:/data/application/init.sql
+  atlas-pma:
     image: phpmyadmin:latest
     container_name: atlas-pma
     networks:
       - atlas-network
     depends_on:
-      - db
+      - atlas-db
     restart: unless-stopped
     ports:
       - 9200:80
     environment:
-      PMA_HOST: db
+      PMA_HOST: atlas-db
       PMA_USER: root
       PMA_PASSWORD: pokemodrules
       UPLOAD_LIMIT: 300M
-  tools:
+  atlas-tools:
     container_name: atlas-rdmtools
     networks:
       - atlas-network
     build: ./tools
     depends_on:
-      - rdm
+      - atlas-rdm
     volumes:
       - ./tools/config/config.php:/var/www/html/config/config.php
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
+  atlas-reactmap:
+    image: ghcr.io/watwowmap/reactmap:main
+    container_name: atlas-reactmap
+    command: sh -c "yarn start"
+    restart: unless-stopped
+    networks:
+      - atlas-network
+    depends_on:
+      - atlas-rdm
+    volumes:
+      #- ./server/src/configs/areas.json:/home/node/server/src/configs/areas.json
+      - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
+      #- ./server/src/configs/geofence.json/:/home/node/server/src/configs/geofence.json
+      - ./reactmap/reactmap-env:/home/node/.env
+    ports:
+      - "9300:8080"
 volumes:
   backups:
     driver: local
