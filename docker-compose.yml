@@ -47,6 +47,7 @@ services:
 #     NO_IV_WEATHER_CLEARING: 1
 #     NO_CELL_POKEMON: 1
 #     NO_MEMORY_CACHE: 1
+
 ### Uncommenting The following lines will start RDM in lldb and store crash reports in the backups folder
 ### Running in lldb will use a bit more resources. (Running RDM works like usual)
 #   entrypoint: ["/bin/sh", "-c", "lldb -b -o \"file ./RealDeviceMap\" -o \"breakpoint set --file main.swift --line 17\" -o \"run\" -o \"process handle SIGPIPE -n true -p true -s false\" -o \"continue\" -k \"bugreport unwind --outfile ./backups/crash-$$(date +%s).log\" -k \"exit\""]
@@ -60,7 +61,8 @@ services:
 #    extra_hosts:
 #    - "host.docker.internal:host-gateway"
 
-  db:
+
+  atlas-db:
     image: mariadb:latest
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400 --init-file /data/application/init.sql
     container_name: atlas-db
@@ -78,6 +80,8 @@ services:
       - ./data:/var/lib/mysql
 #     - /etc/localtime:/etc/localtime:ro
       - ./reactmap/init.sql:/data/application/init.sql
+
+
   atlas-pma:
     image: phpmyadmin:latest
     container_name: atlas-pma
@@ -93,6 +97,8 @@ services:
       PMA_USER: root
       PMA_PASSWORD: pokemodrules
       UPLOAD_LIMIT: 300M
+
+
   atlas-tools:
     container_name: atlas-rdmtools
     networks:
@@ -106,6 +112,8 @@ services:
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
+
+
   atlas-reactmap:
     image: ghcr.io/watwowmap/reactmap:main
     container_name: atlas-reactmap
@@ -116,12 +124,14 @@ services:
     depends_on:
       - atlas-rdm
     volumes:
-      #- ./server/src/configs/areas.json:/home/node/server/src/configs/areas.json
-      - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
-      #- ./server/src/configs/geofence.json/:/home/node/server/src/configs/geofence.json
       - ./reactmap/reactmap-env:/home/node/.env
+      - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
+      #- ./server/src/configs/areas.json:/home/node/server/src/configs/areas.json
+      #- ./server/src/configs/geofence.json/:/home/node/server/src/configs/geofence.json
     ports:
       - "9300:8080"
+
+
 volumes:
   backups:
     driver: local
