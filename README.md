@@ -117,7 +117,8 @@ ___
 - RDM Webhook: http://localhost:9001
 - RDM Tools:   http://localhost:9100
 - PHPMyAdmin:  http://localhost:9200
-- ReactMap:    http://localhost:9300
+- (Optional) ReactMap:    http://localhost:9300
+- (Optional) PoracleJS:    http://localhost:9300
 
 ### Checking the current status of the services
 
@@ -248,3 +249,8 @@ Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if
 >    - Type `manual_db` in the field **Database name**
 >    - Click the button **Create**
 >    - Repeat with `reactmap_db`
+
+## Initial PoracleJS Setup
+1. Uncomment the PoracleJS section on `docker-compose.yml`.
+1. Fill configuration data in `poraclejs-config/local.json`.
+1. Run `docker-compose up -d`.
