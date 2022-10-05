@@ -70,11 +70,6 @@ services:
     ports:
       - 3306:3306
     restart: unless-stopped
-    healthcheck:
-        test: "/usr/bin/mysql --user=root --password=pokemodrules --execute \"SHOW GRANTS FOR 'poracle_user'@'%';\""
-        interval: 2s
-        timeout: 20s
-        retries: 10
     environment:
       MYSQL_ROOT_PASSWORD: pokemodrules
       MYSQL_DATABASE: rdmdb
@@ -163,8 +158,7 @@ services:
     networks:
       - atlas-network
     depends_on:
-      atlas-db:
-        condition: service_healthy
+      - atlas-db
     restart: unless-stopped
     environment:
       PORACLE_SERVER_HOST: 0.0.0.0
@@ -172,8 +166,8 @@ services:
       PORACLE_DB_TYPE: mysql
       PORACLE_DB_HOST: atlas-db
       PORACLE_DB_DATABASE: poracle_db
-      PORACLE_DB_USER: poracle_user
-      PORACLE_DB_PASSWORD: poracle_password
+      PORACLE_DB_USER: root
+      PORACLE_DB_PASSWORD: pokemodrules
     volumes:
       - ./poracle/config/:/usr/src/app/config/
       - ./poracle/logs/:/usr/src/app/logs/
