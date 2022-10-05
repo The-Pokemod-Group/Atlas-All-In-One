@@ -30,7 +30,7 @@ ___
     <!-- echo $CR_PAT | docker login docker.pkg.github.com -u USERNAME --password-stdin
     # if that doesn't work, you can use: -->
     ```bash
-    docker login docker.pkg.github.com -u USERNAME --password PASSWORD
+    docker login ghcr.io -u USERNAME --password PASSWORD
     ```
 
 - Open a shell (terminal) at the directory you extracted the zip.
@@ -92,16 +92,6 @@ ___
         - Type `cmd`
         - Type `ipconfig` and press Enter
         - Look for the line that says `IPv4`. The IP is right next to it.
-
-## Initial ReactMap Setup
-
-- ReactMap requires you to manually create a database first:
-    - Open the [PhpMyAdmin](http://localhost:9200) instance
-    - Click at **New** in the left sidebar, to create a new database
-    - Type `manual_db` in the field **Database name**
-    - Click the button **Create**
-    - Repeat with `reactmap_db`
-- Wait a couple seconds and you should be able to access it at the [port 9300](http://localhost:9300).
 
 ## Entire Atlas Setup
 - Install the Atlas APK and Pokémon GO in your device.
@@ -165,13 +155,13 @@ Starting the containers again with `docker-compose up -d` will still use `./data
 Comment out/delete this in both rdm and pma
 ```
     depends_on:
-      - db
+      - atlas_db
 ```
 
 Also make sure to comment out or delete all of the below otherwise you will end up creating a database anyway
 
 ```
- db:
+ atlas_db:
     image: mariadb:latest
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
     container_name: atlas-db
@@ -244,3 +234,17 @@ Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if
       MyRouterBrand MyRouterModel "Port Forwarding"|NAT
 
   > You need to expose the ports 9000 and 9001 (and 9100 if you want RDM-tools to be accesible from outside)
+
+## Extras
+
+## Initial ReactMap Setup
+
+1. Uncomment the ReactMap section on `docker-compose.yml`.
+1. Run `docker-compose up -d`.
+1. Wait a couple seconds and you should be able to access it at the [port 9300](http://localhost:9300).
+> ReactMap requires you to manually create some databases first. Atlas AIO should do this automatically, but in case something fails:
+>    - Open the [PhpMyAdmin](http://localhost:9200) instance
+>    - Click at **New** in the left sidebar, to create a new database
+>    - Type `manual_db` in the field **Database name**
+>    - Click the button **Create**
+>    - Repeat with `reactmap_db`

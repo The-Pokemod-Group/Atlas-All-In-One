@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.9'
 services:
   atlas-rdm:
     image: ghcr.io/realdevicemap/realdevicemap/realdevicemap:master
@@ -17,7 +17,6 @@ services:
     ports:
       - 9000:9000
       - 9001:9001
-
     environment:
       DB_DATABASE: rdmdb
       DB_HOST: atlas-db
@@ -77,6 +76,7 @@ services:
       MYSQL_USER: rdmuser
       MYSQL_PASSWORD: pokemodrules
     volumes:
+      - ./init:/docker-entrypoint-initdb.d
       - ./data:/var/lib/mysql
 #     - /etc/localtime:/etc/localtime:ro
       - ./reactmap/init.sql:/data/application/init.sql
@@ -129,7 +129,7 @@ services:
       SCANNER_DB_PORT: 3306
       SCANNER_DB_USER: root
       SCANNER_DB_PASSWORD: pokemodrules
-      SCANNER_DB_NAME: realdevicemap
+      SCANNER_DB_NAME: rdmdb
       MANUAL_DB_HOST: atlas-db
       MANUAL_DB_PORT: 3306
       MANUAL_DB_USER: root
