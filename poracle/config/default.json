@@ -8,7 +8,7 @@
   // Server settings
   //
   "server": {
-      "host": "127.0.0.1",        // host name to listen on 127.0.0.1 only localhost; 0.0.0.0 would be in all network interfaces
+      "host": "0.0.0.0",        // host name to listen on 127.0.0.1 only localhost; 0.0.0.0 would be in all network interfaces
       "port": "3030",             // port
     // ipWhitelist, ipBlacklist - array of whitelisted or blacklisted addresses
       "ipWhitelist": [],
@@ -127,18 +127,18 @@
   "database": {
       "client": "mysql",
       "conn": {
-          "host": "127.0.0.1",
-          "database": "poracle",
-          "user": "poracleuser",
-          "password": "poraclepassword",
+          "host": "atlas-db",
+          "database": "poracle-db",
+          "user": "root",
+          "password": "pokemodrules",
           "port": 3306
       },
-      "scannerType": "none",               // Scanner type: can be none, rdm or mad
+      "scannerType": "rdm",               // Scanner type: can be none, rdm or mad
       "scanner": {
-          "host": "127.0.0.1",
-          "database": "scannerdb",
-          "user": "scanneruser",
-          "password": "scannerpassword",
+          "host": "atlas-db",
+          "database": "rdmdb",
+          "user": "root",
+          "password": "pokemodrules",
           "port": 3306
       }
   },

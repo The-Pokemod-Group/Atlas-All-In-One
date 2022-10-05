@@ -1,14 +1,14 @@
 version: '3.9'
 services:
-  rdm:
-    image: docker.pkg.github.com/realdevicemap/realdevicemap/realdevicemap:master
+  atlas-rdm:
+    image: ghcr.io/realdevicemap/realdevicemap/realdevicemap:master
     container_name: atlas-rdm
     networks:
       - atlas-network
     restart: unless-stopped
     tty: true
     depends_on:
-      - db
+      - atlas-db
     volumes:
       # - ./images:/app/resources/webroot/static/img
       - backups:/app/backups
@@ -19,12 +19,12 @@ services:
       - 9001:9001
     environment:
       DB_DATABASE: rdmdb
-      DB_HOST: db
+      DB_HOST: atlas-db
       DB_PORT: 3306
       DB_USERNAME: rdmuser
-      DB_PASSWORD: S0mePassw0rd
+      DB_PASSWORD: pokemodrules
       DB_ROOT_USERNAME: root
-      DB_ROOT_PASSWORD: S0mePassw0rd
+      DB_ROOT_PASSWORD: pokemodrules
       WEB_SERVER_ADDRESS: 0.0.0.0
       WEB_SERVER_PORT: 9000
       WEBHOOK_SERVER_ADDRESS: 0.0.0.0
@@ -46,6 +46,7 @@ services:
 #     NO_IV_WEATHER_CLEARING: 1
 #     NO_CELL_POKEMON: 1
 #     NO_MEMORY_CACHE: 1
+
 ### Uncommenting The following lines will start RDM in lldb and store crash reports in the backups folder
 ### Running in lldb will use a bit more resources. (Running RDM works like usual)
 #   entrypoint: ["/bin/sh", "-c", "lldb -b -o \"file ./RealDeviceMap\" -o \"breakpoint set --file main.swift --line 17\" -o \"run\" -o \"process handle SIGPIPE -n true -p true -s false\" -o \"continue\" -k \"bugreport unwind --outfile ./backups/crash-$$(date +%s).log\" -k \"exit\""]
@@ -59,9 +60,10 @@ services:
 #    extra_hosts:
 #    - "host.docker.internal:host-gateway"
 
-  db:
+
+  atlas-db:
     image: mariadb:latest
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400 --init-file /data/application/init.sql
     container_name: atlas-db
     networks:
       - atlas-network
@@ -69,72 +71,114 @@ services:
       - 3306:3306
     restart: unless-stopped
     healthcheck:
-        test: "/usr/bin/mysql --user=root --password=S0mePassw0rd --execute \"SHOW GRANTS FOR 'poracle_user'@'%';\""
+        test: "/usr/bin/mysql --user=root --password=pokemodrules --execute \"SHOW GRANTS FOR 'poracle_user'@'%';\""
         interval: 2s
         timeout: 20s
         retries: 10
     environment:
-      MYSQL_ROOT_PASSWORD: S0mePassw0rd
+      MYSQL_ROOT_PASSWORD: pokemodrules
       MYSQL_DATABASE: rdmdb
       MYSQL_USER: rdmuser
-      MYSQL_PASSWORD: S0mePassw0rd
+      MYSQL_PASSWORD: pokemodrules
     volumes:
       - ./init:/docker-entrypoint-initdb.d
       - ./data:/var/lib/mysql
 #     - /etc/localtime:/etc/localtime:ro
-  pma:
+      - ./reactmap/init.sql:/data/application/init.sql
+
+
+  atlas-pma:
     image: phpmyadmin:latest
     container_name: atlas-pma
     networks:
       - atlas-network
     depends_on:
-      - db
+      - atlas-db
     restart: unless-stopped
     ports:
       - 9200:80
     environment:
-      PMA_HOST: db
+      PMA_HOST: atlas-db
       PMA_USER: root
-      PMA_PASSWORD: S0mePassw0rd
+      PMA_PASSWORD: pokemodrules
       UPLOAD_LIMIT: 300M
-  tools:
+
+
+  atlas-tools:
     container_name: atlas-rdmtools
     networks:
       - atlas-network
     build: ./tools
     depends_on:
-      - rdm
+      - atlas-rdm
+    restart: unless-stopped
     volumes:
       - ./tools/config/config.php:/var/www/html/config/config.php
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
-  poracle:
-    container_name: atlas-poraclejs
-    #build: 
-    #  context: .
-    image: ghcr.io/kartuludus/poraclejs:develop
-    ports:
-      - "3030:3030"
+
+
+  atlas-reactmap:
+    image: ghcr.io/watwowmap/reactmap:main
+    container_name: atlas-reactmap
+    command: sh -c "yarn start"
+    restart: unless-stopped
+    depends_on:
+      - atlas-db
     networks:
       - atlas-network
-    depends_on: 
-      db:
+    environment:
+      SCANNER_DB_HOST: atlas-db
+      SCANNER_DB_PORT: 3306
+      SCANNER_DB_USER: root
+      SCANNER_DB_PASSWORD: pokemodrules
+      SCANNER_DB_NAME: rdmdb
+      MANUAL_DB_HOST: atlas-db
+      MANUAL_DB_PORT: 3306
+      MANUAL_DB_USER: root
+      MANUAL_DB_PASSWORD: pokemodrules
+      MANUAL_DB_NAME: manual_db
+      MAP_GENERAL_TITLE: ReactMap
+      MAP_GENERAL_START_LAT: 37.808673
+      MAP_GENERAL_START_LON: -122.409821
+      ARRAY_VALUE_EXAMPLE: "[3, 4, 5]"
+    volumes:
+      - ./reactmap/reactmap-env:/home/node/.env
+      - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
+      #- ./reactmap/areas.json:/home/node/server/src/configs/areas.json
+      #- ./reactmap/geofence.json/:/home/node/server/src/configs/geofence.json
+    security_opt:
+      - no-new-privileges:true #https://nodramadevops.com/2019/06/running-docker-application-containers-more-securely/
+    ports:
+      - "9300:8080"
+
+
+  atlas-poracle:
+    container_name: atlas-poraclejs
+    image: ghcr.io/kartuludus/poraclejs:develop
+    ports:
+      - "9400:3030"
+    networks:
+      - atlas-network
+    depends_on:
+      atlas-db:
         condition: service_healthy
     restart: unless-stopped
-    environment: 
+    environment:
       PORACLE_SERVER_HOST: 0.0.0.0
       PORACLE_SERVER_PORT: 3030
       PORACLE_DB_TYPE: mysql
-      PORACLE_DB_HOST: db
-      PORACLE_DB_DATABASE: poracle_database
+      PORACLE_DB_HOST: atlas-db
+      PORACLE_DB_DATABASE: poracle_db
       PORACLE_DB_USER: poracle_user
       PORACLE_DB_PASSWORD: poracle_password
     volumes:
-      - ./poraclejs-config/:/usr/src/app/config/
-      - ./poraclejs-logs/:/usr/src/app/logs/
-      - ./.poraclejs-cache/:/usr/src/app/.cache/
+      - ./poracle/config/:/usr/src/app/config/
+      - ./poracle/logs/:/usr/src/app/logs/
+      - ./poracle/.cache/:/usr/src/app/.cache/
+
 volumes:
   backups:
     driver: local

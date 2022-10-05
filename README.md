@@ -30,14 +30,10 @@ ___
     <!-- echo $CR_PAT | docker login docker.pkg.github.com -u USERNAME --password-stdin
     # if that doesn't work, you can use: -->
     ```bash
-    docker login docker.pkg.github.com -u USERNAME --password PASSWORD
+    docker login ghcr.io -u USERNAME --password PASSWORD
     ```
 
 - Open a shell (terminal) at the directory you extracted the zip.
-
-- For PoracleJS: 
-   - Please fill configuration data in foolder poraclejs-config/local.json.
-   - (Optional) Change the default passwords for PoracleJS db/user in init/01.sql and docker-compose.yml
 
 - Run `docker-compose up -d`. This will download the images and perform the first time initialization setup for each one of the services.
 
@@ -48,7 +44,7 @@ ___
 - Install [Docker Desktop](https://docs.docker.com/desktop/windows/install/)
 
 - Login to GitHub registry with your GitHub credentials (unfortunately RDM requires a GitHub account, you can [create one here](https://github.com/join)):
-    - Open up a PowerShell Terminal 
+    - Open up a PowerShell Terminal
         - Press Super+R (Super is the "Windows" key)
         - Type powershell and press OK
         - Log into your GitHub account with the docker command below (Replace USERNAME and PASSWORD with your own)
@@ -59,19 +55,19 @@ ___
             ```
 - Run `docker-compose up -d db` in your PowerShell from the Atlas-All-In-One folder (Shift+Right click on empty space of the file explorer)
 - After it is done pulling run `docker-compose logs -f` in your Powershell terminal.
-- Once you see these two lines on the logs 
+- Once you see these two lines on the logs
 
     `atlas-db  | 2022-04-30  6:46:02 0 [Note] mariadbd: ready for connections.`
-    
+
     `atlas-db  | Version: '10.7.3-MariaDB-1:10.7.3+maria~focal'  socket: '/run/mysqld/mysqld.sock'  port: 3306  mariadb.org binary distribution`
-    
+
     Press CTRL+C to close the logs.
 - Now you may run `docker-compose up -d` to pull the rest of the files and startup RDM.
 - You need to open up the port 9001 so devices can access it to connect to your Windows Computer.
     You can do that by opening an elevated command prompt or an elevated Powershell terminal and executing this command
-    
+
     ```netsh advfirewall firewall add rule name="TCP Port 9001" dir=in action=allow protocol=TCP localport=9001```
-    
+
 ## Basic RDM Setup
 
 - To get the first time RDM's Access Token you need to look for it in the logs. Go back to your terminal and run:
@@ -101,7 +97,7 @@ ___
 - Install the Atlas APK and Pokémon GO in your device.
 - Open Atlas and do the one-time initial setup:
     - RDM URL: `http://IP-YOU-GOT-ABOVE:9001` _(note this is 9001, not 9000)._
-    - Auth Bearer: leave empty.
+    - Auth Bearer: Fill in with the same string as Device Endpoint Secret in RDM's settings
     - Device Name: anything you want.
     - Email: the e-mail you used to register at [atlas.pokemod.dev](https://atlas.pokemod.dev)
     - Device auth token: this is the token you initially got after your first login on [atlas.pokemod.dev](https://atlas.pokemod.dev).
@@ -111,6 +107,8 @@ ___
 
 > Tip: after the initial setup, any changes to the configs above can be done from [atlas.pokemod.dev](https://atlas.pokemod.dev). It's not necessary to manually change every device one by one.
 
+___
+
 ## Tips and Tricks
 
 ### Default URLs
@@ -119,6 +117,7 @@ ___
 - RDM Webhook: http://localhost:9001
 - RDM Tools:   http://localhost:9100
 - PHPMyAdmin:  http://localhost:9200
+- ReactMap:    http://localhost:9300
 
 ### Checking the current status of the services
 
@@ -144,26 +143,25 @@ You can cleanup everything, **except the data**, by stopping and removing the co
 
 Starting the containers again with `docker-compose up -d` will still use `./data` directory and restore everything.
 
-## Changes for using a DB on your Localhost outside of Docker
+## Using a local database outside of Docker
 
-Edit `docker-compose.yaml`:
- - Change the following:
-Uncomment this
-```
-    extra_hosts:
-    - "host.docker.internal:host-gateway"
-```
+- Edit `docker-compose.yaml`:
+    - Uncomment this block:
+        ```yml
+            extra_hosts:
+            - "host.docker.internal:host-gateway"
+        ```
 
 Comment out/delete this in both rdm and pma
 ```
     depends_on:
-      - db
+      - atlas_db
 ```
 
 Also make sure to comment out or delete all of the below otherwise you will end up creating a database anyway
 
 ```
- db:
+ atlas_db:
     image: mariadb:latest
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password --binlog-expire-logs-seconds=86400
     container_name: atlas-db
@@ -236,3 +234,22 @@ Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if
       MyRouterBrand MyRouterModel "Port Forwarding"|NAT
 
   > You need to expose the ports 9000 and 9001 (and 9100 if you want RDM-tools to be accesible from outside)
+
+## Extras
+
+## Initial ReactMap Setup
+
+1. Uncomment the ReactMap section on `docker-compose.yml`.
+1. Run `docker-compose up -d`.
+1. Wait a couple seconds and you should be able to access it at the [port 9300](http://localhost:9300).
+> ReactMap requires you to manually create some databases first. Atlas AIO should do this automatically, but in case something fails:
+>    - Open the [PhpMyAdmin](http://localhost:9200) instance
+>    - Click at **New** in the left sidebar, to create a new database
+>    - Type `manual_db` in the field **Database name**
+>    - Click the button **Create**
+>    - Repeat with `reactmap_db`
+
+## Initial PoracleJS Setup
+1. Uncomment the PoracleJS section on `docker-compose.yml`.
+1. Fill configuration data in `poraclejs-config/local.json`.
+1. Run `docker-compose up -d`.
