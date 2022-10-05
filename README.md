@@ -100,6 +100,7 @@ ___
     - Click at **New** in the left sidebar, to create a new database
     - Type `manual_db` in the field **Database name**
     - Click the button **Create**
+    - Repeat with `reactmap_db`
 - Wait a couple seconds and you should be able to access it at the [port 9300](http://localhost:9300).
 
 ## Entire Atlas Setup
@@ -115,6 +116,8 @@ ___
 - That's all. You can now [set up RDM](https://realdevicemap.readthedocs.io/en/latest/realdevicemap/dashboard/index.html) and check the device at the [Devices Dashboard](https://localhost:9000/dashboard/devices).
 
 > Tip: after the initial setup, any changes to the configs above can be done from [atlas.pokemod.dev](https://atlas.pokemod.dev). It's not necessary to manually change every device one by one.
+
+___
 
 ## Tips and Tricks
 

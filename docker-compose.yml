@@ -106,6 +106,7 @@ services:
     build: ./tools
     depends_on:
       - atlas-rdm
+    restart: unless-stopped
     volumes:
       - ./tools/config/config.php:/var/www/html/config/config.php
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
@@ -119,15 +120,32 @@ services:
     container_name: atlas-reactmap
     command: sh -c "yarn start"
     restart: unless-stopped
+    depends_on:
+      - atlas-db
     networks:
       - atlas-network
-    depends_on:
-      - atlas-rdm
+    environment:
+      SCANNER_DB_HOST: atlas-db
+      SCANNER_DB_PORT: 3306
+      SCANNER_DB_USER: root
+      SCANNER_DB_PASSWORD: pokemodrules
+      SCANNER_DB_NAME: realdevicemap
+      MANUAL_DB_HOST: atlas-db
+      MANUAL_DB_PORT: 3306
+      MANUAL_DB_USER: root
+      MANUAL_DB_PASSWORD: pokemodrules
+      MANUAL_DB_NAME: manual_db
+      MAP_GENERAL_TITLE: ReactMap
+      MAP_GENERAL_START_LAT: 37.808673
+      MAP_GENERAL_START_LON: -122.409821
+      ARRAY_VALUE_EXAMPLE: "[3, 4, 5]"
     volumes:
       - ./reactmap/reactmap-env:/home/node/.env
       - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
-      #- ./server/src/configs/areas.json:/home/node/server/src/configs/areas.json
-      #- ./server/src/configs/geofence.json/:/home/node/server/src/configs/geofence.json
+      #- ./reactmap/areas.json:/home/node/server/src/configs/areas.json
+      #- ./reactmap/geofence.json/:/home/node/server/src/configs/geofence.json
+    security_opt:
+      - no-new-privileges:true #https://nodramadevops.com/2019/06/running-docker-application-containers-more-securely/
     ports:
       - "9300:8080"
 
