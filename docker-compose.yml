@@ -78,8 +78,7 @@ services:
     volumes:
       - ./init:/docker-entrypoint-initdb.d
       - ./data:/var/lib/mysql
-#     - /etc/localtime:/etc/localtime:ro
-      - ./reactmap/init.sql:/data/application/init.sql
+      # - /etc/localtime:/etc/localtime:ro
 
 
   atlas-pma:
@@ -115,63 +114,65 @@ services:
       - 9100:80
 
 
-  atlas-reactmap:
-    image: ghcr.io/watwowmap/reactmap:main
-    container_name: atlas-reactmap
-    command: sh -c "yarn start"
-    restart: unless-stopped
-    depends_on:
-      - atlas-db
-    networks:
-      - atlas-network
-    environment:
-      SCANNER_DB_HOST: atlas-db
-      SCANNER_DB_PORT: 3306
-      SCANNER_DB_USER: root
-      SCANNER_DB_PASSWORD: pokemodrules
-      SCANNER_DB_NAME: rdmdb
-      MANUAL_DB_HOST: atlas-db
-      MANUAL_DB_PORT: 3306
-      MANUAL_DB_USER: root
-      MANUAL_DB_PASSWORD: pokemodrules
-      MANUAL_DB_NAME: manual_db
-      MAP_GENERAL_TITLE: ReactMap
-      MAP_GENERAL_START_LAT: 37.808673
-      MAP_GENERAL_START_LON: -122.409821
-      ARRAY_VALUE_EXAMPLE: "[3, 4, 5]"
-    volumes:
-      - ./reactmap/reactmap-env:/home/node/.env
-      - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
-      #- ./reactmap/areas.json:/home/node/server/src/configs/areas.json
-      #- ./reactmap/geofence.json/:/home/node/server/src/configs/geofence.json
-    security_opt:
-      - no-new-privileges:true #https://nodramadevops.com/2019/06/running-docker-application-containers-more-securely/
-    ports:
-      - "9300:8080"
+  ## Uncomment this block to enable ReactMap
+  # atlas-reactmap:
+  #   image: ghcr.io/watwowmap/reactmap:main
+  #   container_name: atlas-reactmap
+  #   command: sh -c "yarn start"
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - atlas-db
+  #   networks:
+  #     - atlas-network
+  #   environment:
+  #     SCANNER_DB_HOST: atlas-db
+  #     SCANNER_DB_PORT: 3306
+  #     SCANNER_DB_USER: root
+  #     SCANNER_DB_PASSWORD: pokemodrules
+  #     SCANNER_DB_NAME: rdmdb
+  #     MANUAL_DB_HOST: atlas-db
+  #     MANUAL_DB_PORT: 3306
+  #     MANUAL_DB_USER: root
+  #     MANUAL_DB_PASSWORD: pokemodrules
+  #     MANUAL_DB_NAME: manual_db
+  #     MAP_GENERAL_TITLE: ReactMap
+  #     MAP_GENERAL_START_LAT: 37.808673
+  #     MAP_GENERAL_START_LON: -122.409821
+  #     ARRAY_VALUE_EXAMPLE: "[3, 4, 5]"
+  #   volumes:
+  #     - ./reactmap/reactmap-env:/home/node/.env
+  #     - ./reactmap/reactmap-local.json:/home/node/server/src/configs/local.json
+  #     #- ./reactmap/areas.json:/home/node/server/src/configs/areas.json
+  #     #- ./reactmap/geofence.json/:/home/node/server/src/configs/geofence.json
+  #   security_opt:
+  #     - no-new-privileges:true #https://nodramadevops.com/2019/06/running-docker-application-containers-more-securely/
+  #   ports:
+  #     - "9300:8080"
 
 
-  atlas-poracle:
-    container_name: atlas-poraclejs
-    image: ghcr.io/kartuludus/poraclejs:develop
-    ports:
-      - "9400:3030"
-    networks:
-      - atlas-network
-    depends_on:
-      - atlas-db
-    restart: unless-stopped
-    environment:
-      PORACLE_SERVER_HOST: 0.0.0.0
-      PORACLE_SERVER_PORT: 3030
-      PORACLE_DB_TYPE: mysql
-      PORACLE_DB_HOST: atlas-db
-      PORACLE_DB_DATABASE: poracle_db
-      PORACLE_DB_USER: root
-      PORACLE_DB_PASSWORD: pokemodrules
-    volumes:
-      - ./poracle/config/:/usr/src/app/config/
-      - ./poracle/logs/:/usr/src/app/logs/
-      - ./poracle/.cache/:/usr/src/app/.cache/
+  ## Uncomment this block to enable PoracleJS
+  # atlas-poracle:
+  #   container_name: atlas-poraclejs
+  #   image: ghcr.io/kartuludus/poraclejs:develop
+  #   ports:
+  #     - "9400:3030"
+  #   networks:
+  #     - atlas-network
+  #   depends_on:
+  #     - atlas-db
+  #   restart: unless-stopped
+  #   environment:
+  #     PORACLE_SERVER_HOST: 0.0.0.0
+  #     PORACLE_SERVER_PORT: 3030
+  #     PORACLE_DB_TYPE: mysql
+  #     PORACLE_DB_HOST: atlas-db
+  #     PORACLE_DB_DATABASE: poracle_db
+  #     PORACLE_DB_USER: root
+  #     PORACLE_DB_PASSWORD: pokemodrules
+  #   volumes:
+  #     - ./poracle/config/:/usr/src/app/config/
+  #     - ./poracle/logs/:/usr/src/app/logs/
+  #     - ./poracle/.cache/:/usr/src/app/.cache/
 
 volumes:
   backups:

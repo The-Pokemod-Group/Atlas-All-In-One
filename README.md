@@ -236,9 +236,10 @@ Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if
 
   > You need to expose the ports 9000 and 9001 (and 9100 if you want RDM-tools to be accesible from outside)
 
+----
 ## Extras
 
-## Initial ReactMap Setup
+### Initial ReactMap Setup
 
 1. Uncomment the ReactMap section on `docker-compose.yml`.
 1. Run `docker-compose up -d`.
@@ -250,7 +251,12 @@ Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if
 >    - Click the button **Create**
 >    - Repeat with `reactmap_db`
 
-## Initial PoracleJS Setup
+### Initial PoracleJS Setup
 1. Uncomment the PoracleJS section on `docker-compose.yml`.
 1. Fill configuration data in `poraclejs-config/local.json`.
 1. Run `docker-compose up -d`.
+> PoracleJS requires you to manually create some databases first. Atlas AIO should do this automatically, but in case something fails:
+>    - Open the [PhpMyAdmin](http://localhost:9200) instance
+>    - Click at **New** in the left sidebar, to create a new database
+>    - Type `poracle_db` in the field **Database name**
+>    - Click the button **Create**
