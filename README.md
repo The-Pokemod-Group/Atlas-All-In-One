@@ -224,12 +224,7 @@ Your MySQL/MariaDB conf file needs to have either `bind-address = [DOCKERIP]` if
       PMA_USER: root
       PMA_PASSWORD: pokemodrules
       ```
-- (RDM-Tools Only) Edit `tools/config/config.php` and change the lines below accordingly:
-    ```php
-    define('DB_USER', getenv("DB_USER") ?: "root");
-    define('DB_PSWD', getenv("DB_PSWD") ?: "pokemodrules");
-    define('DB_NAME', getenv("DB_NAME") ?: "rdmdb");
-    ```
+- (RDM-Tools Only) Edit environment variables in docker-compose.yml to match with your database credentials.
 - Browse to [your router's IP](https://wiki.amahi.org/index.php/Find_Your_Gateway_IP) and use the power of Google to find out how do you forward the ports using NAT for your router's brand:
 
       MyRouterBrand MyRouterModel "Port Forwarding"|NAT
