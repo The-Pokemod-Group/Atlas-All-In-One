@@ -99,16 +99,16 @@ services:
 
 
   atlas-tools:
+    image: ghcr.io/picklerickve/realdevicemap-tools:master
     container_name: atlas-rdmtools
     networks:
       - atlas-network
-    build: ./tools
     depends_on:
       - atlas-rdm
     restart: unless-stopped
     volumes:
-      - ./tools/config/config.php:/var/www/html/config/config.php
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
+      # - ./tools/config/.htpasswd:/var/www/html/config/.htpasswd # Initial username/password is admin/admin
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
