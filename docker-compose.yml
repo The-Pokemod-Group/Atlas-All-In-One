@@ -123,6 +123,7 @@ services:
     volumes:
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
       # - ./tools/config/.htpasswd:/var/www/html/config/.htpasswd # Initial username/password is admin/admin
+      # - ./tools/config/.htaccess:/var/www/html/.htaccess
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
