@@ -99,16 +99,31 @@ services:
 
 
   atlas-tools:
+    image: ghcr.io/picklerickve/realdevicemap-tools:master
     container_name: atlas-rdmtools
     networks:
       - atlas-network
-    build: ./tools
     depends_on:
       - atlas-rdm
     restart: unless-stopped
+    environment:
+      DB_HOST: atlas-db
+      DB_NAME: rdmdb
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PSWD: pokemodrules
+      # MDB_ACTIVE: false
+      # MDB_HOST: 127.0.0.1
+      # MDB_NAME: manualdb
+      # MDB_PORT: 3306
+      # MDB_USER: mdbuser
+      # MDB_PSWD: password
+      # OWN_TS: https://IP:PORT/tile/STYLE/{z}/{x}/{y}/1/png
+
     volumes:
-      - ./tools/config/config.php:/var/www/html/config/config.php
       - ./tools/config/docker-php-maxexectime.ini:/usr/local/etc/php/conf.d/docker-php-maxexectime.ini
+      # - ./tools/config/.htpasswd:/var/www/html/config/.htpasswd # Initial username/password is admin/admin
+      # - ./tools/config/.htaccess:/var/www/html/.htaccess
       # - /etc/localtime:/etc/localtime:ro
     ports:
       - 9100:80
