@@ -53,7 +53,7 @@ ___
             ```bash
             docker login docker.pkg.github.com -u USERNAME --password PASSWORD
             ```
-- Run `docker-compose up -d db` in your PowerShell from the Atlas-All-In-One folder (Shift+Right click on empty space of the file explorer)
+- Run `docker-compose up -d atlas-db` in your PowerShell from the Atlas-All-In-One folder (Shift+Right click on empty space of the file explorer)
 - After it is done pulling run `docker-compose logs -f` in your Powershell terminal.
 - Once you see these two lines on the logs
 
