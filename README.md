@@ -107,6 +107,13 @@ ___
 
 > Tip: after the initial setup, any changes to the configs above can be done from [atlas.pokemod.dev](https://atlas.pokemod.dev). It's not necessary to manually change every device one by one.
 
+## Remote Authentication
+
+Due to recent changes in how authentication flow works, most MITMs have been forced to use some kind of remote service to validate their login requests. Atlas is no exception hence we added the possibility for the user to add a remote service to their atlas configuration.
+
+Currently Atlas supports Unown#'s [Xilriws](https://github.com/UnownHash/Xilriws-Public) which you can easily setup as a docker service by following the documentation.
+
+Once you've completed the setup, simply add the Xirlriws endpoint URL to your device configuration on the [Atlas portal](https://atlas.pokemod.dev).
 ___
 
 ## Tips and Tricks
