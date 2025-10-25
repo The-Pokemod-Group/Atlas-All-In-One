@@ -113,7 +113,7 @@ Due to recent changes in how authentication flow works, most MITMs have been for
 
 Currently Atlas supports Unown#'s [Xilriws](https://github.com/UnownHash/Xilriws-Public) which you can easily setup as a docker service by following the documentation.
 
-Once you've completed the setup, simply add the Xirlriws endpoint URL to your device configuration on the [Atlas portal](https://atlas.pokemod.dev).
+Once you've completed the setup, simply add the Xilriws endpoint URL to your device configuration on the [Atlas portal](https://atlas.pokemod.dev).
 ___
 
 ## Tips and Tricks
